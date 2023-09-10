@@ -11,6 +11,9 @@ using System.Drawing;
 
 namespace csv2sql
 {
+
+
+
     public partial class Form1 : Form
     {
 
@@ -41,7 +44,7 @@ namespace csv2sql
             get { return (int)numericUpDown1.Value; }
         }
 
-        public string AppSettinsPathFile
+        public string AppSettinsPath
         {
 
             get { return Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) 
@@ -58,6 +61,7 @@ namespace csv2sql
 
             InitializeComponent();
 
+            textBox1.Text = ReadAppsettingsWorkfolder(); //read from file
 
             //grid view
             DataTable dt = new DataTable();
@@ -188,7 +192,7 @@ namespace csv2sql
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             //save setting to app settins folder
-            string filename = this.AppSettinsPathFile + @"\" + "workfolder.txt";
+            string filename = this.AppSettinsPath + @"\" + "workfolder.txt";
             string directoryPath = Path.GetDirectoryName(filename);
             if (!Directory.Exists(directoryPath))
                 Directory.CreateDirectory(directoryPath);
@@ -238,5 +242,27 @@ namespace csv2sql
             }
 
         }
+
+        private string ReadAppsettingsWorkfolder()
+        {
+            string pathfile = this.AppSettinsPath + @"\workfolder.txt";
+            string rslt=@"C:\";
+            try
+            {
+                using (var reader = new StreamReader(pathfile))
+                {
+                    rslt = reader.ReadLine();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return rslt;
+        }
+
+
+
+
     }
 }
