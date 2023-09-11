@@ -76,13 +76,13 @@ namespace csv2sql
             dt.Rows.Add("Examplecol_3", "bit");
             dataGridView1.DataSource = dt;
 
-            dataGridView1.Columns[0].Width = dataGridColW;
-            dataGridView1.Columns[1].Width = dataGridColW;
+            foreach (DataGridViewColumn x in dataGridView1.Columns)
+                x.Width = dataGridColW; //set col width
 
 
         }
 
-        //Save button:
+        //Save datatypes button:
         private void button1_Click(object sender, EventArgs e)
         {
             SaveFileDialog save = new SaveFileDialog();
@@ -97,7 +97,7 @@ namespace csv2sql
             }
         }
 
-        //Load button
+        //Load datatypes button
         private void button2_Click(object sender, EventArgs e)
         {
             OpenFileDialog open = new OpenFileDialog();
@@ -109,6 +109,10 @@ namespace csv2sql
             {
                 string fileName = open.FileName;
                 RestoreDataGridViewFromCsv(fileName);
+
+                foreach (DataGridViewColumn x in dataGridView1.Columns)
+                    x.Width = dataGridColW; //set col width
+
             }
 
         }
