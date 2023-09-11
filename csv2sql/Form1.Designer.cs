@@ -79,7 +79,7 @@ namespace csv2sql
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(48, 250);
+            this.label2.Location = new System.Drawing.Point(48, 213);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(124, 21);
             this.label2.TabIndex = 2;
@@ -87,7 +87,7 @@ namespace csv2sql
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(48, 274);
+            this.textBox2.Location = new System.Drawing.Point(48, 237);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(581, 23);
             this.textBox2.TabIndex = 3;
@@ -96,7 +96,7 @@ namespace csv2sql
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(48, 372);
+            this.dataGridView1.Location = new System.Drawing.Point(48, 312);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 70;
             this.dataGridView1.RowTemplate.Height = 25;
@@ -107,7 +107,7 @@ namespace csv2sql
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(48, 343);
+            this.label3.Location = new System.Drawing.Point(48, 283);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(153, 21);
             this.label3.TabIndex = 5;
@@ -116,7 +116,7 @@ namespace csv2sql
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button1.Location = new System.Drawing.Point(299, 338);
+            this.button1.Location = new System.Drawing.Point(638, 416);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 29);
             this.button1.TabIndex = 6;
@@ -127,7 +127,7 @@ namespace csv2sql
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button2.Location = new System.Drawing.Point(219, 339);
+            this.button2.Location = new System.Drawing.Point(638, 381);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 29);
             this.button2.TabIndex = 7;
@@ -138,7 +138,7 @@ namespace csv2sql
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button3.Location = new System.Drawing.Point(173, 835);
+            this.button3.Location = new System.Drawing.Point(145, 727);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(380, 35);
             this.button3.TabIndex = 8;
@@ -179,7 +179,7 @@ namespace csv2sql
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(44, 153);
+            this.label5.Location = new System.Drawing.Point(44, 140);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(78, 21);
             this.label5.TabIndex = 12;
@@ -187,7 +187,7 @@ namespace csv2sql
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(48, 177);
+            this.numericUpDown1.Location = new System.Drawing.Point(48, 164);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -217,7 +217,7 @@ namespace csv2sql
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(763, 1008);
+            this.ClientSize = new System.Drawing.Size(732, 806);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.label5);
