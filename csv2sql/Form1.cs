@@ -19,6 +19,7 @@ namespace csv2sql
 
         public static Form1 Instance;
 
+        private const int dataGridColW = 250;
         
         //private SaveFileDialog saveFileDialog1;
         //private OpenFileDialog openFileDialog1;
@@ -67,27 +68,16 @@ namespace csv2sql
             DataTable dt = new DataTable();
             dt.Columns.Add("Column Name", typeof(string));
             dt.Columns.Add("Data Type", typeof(string));
+
+
+            //Add some example data
             dt.Rows.Add("Examplecol_1", "int");
             dt.Rows.Add("Examplecol_2", "datetime2");
             dt.Rows.Add("Examplecol_3", "bit");
             dataGridView1.DataSource = dt;
 
-
-            /*
-
-            saveFileDialog1 = new SaveFileDialog();
-            openFileDialog1 = new OpenFileDialog();
-
-            // Set the properties of the SaveFileDialog object
-            saveFileDialog1.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
-            saveFileDialog1.Title = "Save As";
-            saveFileDialog1.InitialDirectory = @"C:\temp";
-            saveFileDialog1.FileName = "MyFile.txt";
-
-            // Optional: Add an event handler for the FileOk event
-            //saveFileDialog1.FileOk += new CancelEventHandler(saveFileDialog1_FileOk);
-
-            */
+            dataGridView1.Columns[0].Width = dataGridColW;
+            dataGridView1.Columns[1].Width = dataGridColW;
 
 
         }
@@ -207,7 +197,15 @@ namespace csv2sql
         private void button3_Click(object sender, EventArgs e)
         {
             GenerateSQL g = new GenerateSQL();
-            g.main();
+            try
+            {
+                g.main();
+                MessageBox.Show("File created: " + GenerateSQL.outputFileName, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
 
@@ -234,7 +232,10 @@ namespace csv2sql
         private void button5_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog folder = new FolderBrowserDialog();
-            folder.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            if (Directory.Exists(this.Workfolder))
+                folder.InitialDirectory = this.Workfolder; 
+            else
+                folder.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             if (folder.ShowDialog() == DialogResult.OK)
             {
                 string path = folder.SelectedPath;

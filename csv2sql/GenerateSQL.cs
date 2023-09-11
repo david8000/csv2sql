@@ -14,7 +14,7 @@ namespace csv2sql
     internal class GenerateSQL
     {
 
-        public const string outputFileName = "_output_.csv";
+        public const string outputFileName = "_output_.sql";
         public const string delimiter = ";";
         public const string defaultTableName = "_MYNEWTABLE_";
 
