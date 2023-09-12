@@ -3,6 +3,7 @@ using System.Data;
 using System.Windows.Forms;
 
 using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -266,8 +267,19 @@ namespace csv2sql
             return rslt;
         }
 
+        
+        //Open work folder link
+        private void linkLabel1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Process.Start("explorer.exe", this.Workfolder);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
-
-
+        }
     }
 }
