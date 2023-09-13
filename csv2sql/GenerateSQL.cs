@@ -19,13 +19,18 @@ namespace csv2sql
         public const string defaultTableName = "_MYNEWTABLE_";
 
         private string[] csvHeaders;
+        private string[] columnDataTypes;
+
+
         private List<string[]> csvLines;
 
         public void main()
         {
             readCSVfile();
+
             outputSQLscript();
         }
+
 
 
         private void readCSVfile()
@@ -40,6 +45,8 @@ namespace csv2sql
                 { line = reader.ReadLine(); }
 
                 csvHeaders = line.Split(delimiter);
+                readDataTypes(); //pupulate this class var when headers read
+
 
                 while (!reader.EndOfStream)
                 {
@@ -53,13 +60,23 @@ namespace csv2sql
                 }
             }
         }
+        private void readDataTypes()
+        {
+            columnDataTypes = new string[csvHeaders.Length];
+            for (int i = 0; i < csvHeaders.Length; i++)
+            {
+                columnDataTypes[i] = getDataType(csvHeaders[i]);
+            }
+        }
+
 
         private string[] formatDecVals(string[] datarow)
         {
             for (int i = 0; i < datarow.Length; i++)
             {
-                string header = csvHeaders[i];
-                string useType = getDataType(header);
+                //string header = csvHeaders[i];
+                //string useType = getDataType(header);
+                string useType = columnDataTypes[i];
                 bool dec = isDecType(useType);
                 if (dec)
                 {
@@ -74,7 +91,7 @@ namespace csv2sql
         private bool isDecType(string typeName)
         {
             bool rslt = false;
-            string[] types = {"float", "real", "decimal", "money", "numeric", "dec", "fixed", "double" };
+            string[] types = { "float", "real", "decimal", "money", "numeric", "dec", "fixed", "double" };
             //note: "dec", "fixed", "double" are MySQL types. The rest is SQL Server.
 
             foreach (string type in types)
@@ -93,11 +110,22 @@ namespace csv2sql
 
             //create table statement:
             string create = "CREATE TABLE " + defaultTableName + " ( ";
+
+            /*
             foreach (string s in csvHeaders)
             {
                 create += "[" + s + "]";
-                create += " " + getDataType(s) + ", ";
+                create += " " + getDataType(s) + ", ";                
             }
+            */
+
+            for (int i = 0; i < csvHeaders.Length; i++)
+            {
+                create += "[" + csvHeaders[i] + "]";
+                create += " " + columnDataTypes[i] + ", ";
+            }
+
+
             create = create.Trim(new char[] { ' ', ',' }); //remove last comma
             create += " );";
 
