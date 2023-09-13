@@ -74,15 +74,8 @@ namespace csv2sql
         private bool isDecType(string typeName)
         {
             bool rslt = false;
-            List<string> types = new List<string>();
-            types.Add("float");
-            types.Add("real");
-            types.Add("decimal");
-            types.Add("money");
-            types.Add("numeric");
-            types.Add("dec"); //mysql
-            types.Add("fixed"); //mysql
-            types.Add("double"); //mysql
+            string[] types = {"float", "real", "decimal", "money", "numeric", "dec", "fixed", "double" };
+            //note: "dec", "fixed", "double" are MySQL types. The rest is SQL Server.
 
             foreach (string type in types)
                 if (typeName.Contains(type, StringComparison.InvariantCultureIgnoreCase))
