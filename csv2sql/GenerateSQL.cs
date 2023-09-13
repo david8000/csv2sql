@@ -55,15 +55,15 @@ namespace csv2sql
         }
 
         private string[] formatDecVals(string[] datarow)
-        {            
+        {
             for (int i = 0; i < datarow.Length; i++)
             {
                 string header = csvHeaders[i];
-                string useType=getDataType(header);
-                bool dec=isDecType(useType);    
-                if(dec)
+                string useType = getDataType(header);
+                bool dec = isDecType(useType);
+                if (dec)
                 {
-                    datarow[i] = datarow[i].Replace(" ",""); //remove spaces
+                    datarow[i] = datarow[i].Replace(" ", ""); //remove spaces
                     datarow[i] = datarow[i].Replace(",", ".");
 
                 }

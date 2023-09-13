@@ -21,7 +21,7 @@ namespace csv2sql
         public static Form1 Instance;
 
         private const int dataGridColW = 250;
-        
+
         //private SaveFileDialog saveFileDialog1;
         //private OpenFileDialog openFileDialog1;
 
@@ -49,8 +49,11 @@ namespace csv2sql
         public string AppSettinsPath
         {
 
-            get { return Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) 
-                    + @"\"+ AppDomain.CurrentDomain.FriendlyName; }
+            get
+            {
+                return Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)
+                  + @"\" + AppDomain.CurrentDomain.FriendlyName;
+            }
         }
 
         public bool FormatDecimalValues
@@ -243,7 +246,7 @@ namespace csv2sql
         {
             FolderBrowserDialog folder = new FolderBrowserDialog();
             if (Directory.Exists(this.Workfolder))
-                folder.InitialDirectory = this.Workfolder; 
+                folder.InitialDirectory = this.Workfolder;
             else
                 folder.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             if (folder.ShowDialog() == DialogResult.OK)
@@ -257,7 +260,7 @@ namespace csv2sql
         private string ReadAppsettingsWorkfolder()
         {
             string pathfile = this.AppSettinsPath + @"\workfolder.txt";
-            string rslt=@"C:\";
+            string rslt = @"C:\";
             try
             {
                 using (var reader = new StreamReader(pathfile))
@@ -272,7 +275,7 @@ namespace csv2sql
             return rslt;
         }
 
-        
+
         //Open work folder link
         private void linkLabel1_Click(object sender, EventArgs e)
         {
