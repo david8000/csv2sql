@@ -53,6 +53,11 @@ namespace csv2sql
                     + @"\"+ AppDomain.CurrentDomain.FriendlyName; }
         }
 
+        public bool FormatDecimalValues
+        {
+            get { return checkBox1.Checked; }
+        }
+
 
         public DataGridView GridView { get { return dataGridView1; } }
 
@@ -279,6 +284,11 @@ namespace csv2sql
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
 
         }
     }

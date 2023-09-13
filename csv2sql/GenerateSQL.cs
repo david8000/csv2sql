@@ -21,8 +21,6 @@ namespace csv2sql
         private string[] csvHeaders;
         private List<string[]> csvLines;
 
-
-
         public void main()
         {
             readCSVfile();
@@ -46,11 +44,53 @@ namespace csv2sql
                 while (!reader.EndOfStream)
                 {
                     line = reader.ReadLine();
-                    csvLines.Add(line.Split(delimiter));
+                    string[] a = line.Split(delimiter);
+
+                    if (Form1.Instance.FormatDecimalValues)
+                        a = formatDecVals(a);
+
+                    csvLines.Add(a);
                 }
             }
         }
 
+        private string[] formatDecVals(string[] datarow)
+        {            
+            for (int i = 0; i < datarow.Length; i++)
+            {
+                string header = csvHeaders[i];
+                string useType=getDataType(header);
+                bool dec=isDecType(useType);    
+                if(dec)
+                {
+                    datarow[i] = datarow[i].Replace(" ",""); //remove spaces
+                    datarow[i] = datarow[i].Replace(",", ".");
+
+                }
+            }
+            return datarow;
+        }
+
+        private bool isDecType(string typeName)
+        {
+            bool rslt = false;
+            List<string> types = new List<string>();
+            types.Add("float");
+            types.Add("real");
+            types.Add("decimal");
+            types.Add("money");
+            types.Add("numeric");
+            types.Add("dec"); //mysql
+            types.Add("fixed"); //mysql
+            types.Add("double"); //mysql
+
+            foreach (string type in types)
+                if (typeName.Contains(type, StringComparison.InvariantCultureIgnoreCase))
+                    rslt = true;
+
+            return rslt;
+
+        }
 
 
 
@@ -98,7 +138,7 @@ namespace csv2sql
                     {
                         writer.WriteLine(insert);
                         writer.WriteLine("VALUES");
-                        
+
                     }
 
                     writer.Write(" (");
@@ -109,7 +149,7 @@ namespace csv2sql
                     }
 
                     writer.Write(")");
-                    if (b < Form1.Instance.BatchSize - 1 && rowno < csvLines.Count -1)
+                    if (b < Form1.Instance.BatchSize - 1 && rowno < csvLines.Count - 1)
                         writer.Write(", ");
                     else
                     {
@@ -119,7 +159,7 @@ namespace csv2sql
                     writer.WriteLine("");
 
                     rowno++;
-                    b = b == Form1.Instance.BatchSize -1 ? 0 : b + 1;
+                    b = b == Form1.Instance.BatchSize - 1 ? 0 : b + 1;
                 }
             }
 
