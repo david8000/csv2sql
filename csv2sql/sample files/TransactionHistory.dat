@@ -1,0 +1,10 @@
+Column Name,Data Type
+TransactionID,int
+ProductID,int
+ReferenceOrderID,int
+ReferenceOrderLineID,int
+TransactionDate,datetime2
+TransactionType,nvarchar(20)
+Quantity,int
+ActualCost,money
+ModifiedDate,datetime2
