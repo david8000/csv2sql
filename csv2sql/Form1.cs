@@ -89,6 +89,12 @@ namespace csv2sql
                 x.Width = dataGridColW; //set col width
 
 
+            //Tooltip on checkbox:
+
+            ToolTip toolTip = new ToolTip();
+            toolTip.SetToolTip(checkBox1, "Will replace \",\" with \".\" and remove spaces.\r\nApplies to datatypes where decimals are used.");
+
+
         }
 
         //Save datatypes button:

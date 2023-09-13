@@ -26,8 +26,7 @@ namespace csv2sql
 
         public void main()
         {
-            readCSVfile();
-
+            readCSVfile(); //will also populate "columnDataTypes"
             outputSQLscript();
         }
 
@@ -111,13 +110,6 @@ namespace csv2sql
             //create table statement:
             string create = "CREATE TABLE " + defaultTableName + " ( ";
 
-            /*
-            foreach (string s in csvHeaders)
-            {
-                create += "[" + s + "]";
-                create += " " + getDataType(s) + ", ";                
-            }
-            */
 
             for (int i = 0; i < csvHeaders.Length; i++)
             {
@@ -138,9 +130,6 @@ namespace csv2sql
             }
             insert = insert.Trim(new char[] { ' ', ',' }); //remove last comma
             insert += " )";
-
-            //insert values statements:
-            //string values = "VALUES ";
 
 
             //write to output file:
@@ -190,11 +179,10 @@ namespace csv2sql
 
 
 
-
-
-
         /// <summary>
-        /// Read the data grid view
+        /// Read the data grid view.
+        /// Try to only use this once for performance on large files :)
+        /// Ie for pupulating a class var.
         /// </summary>
         private string getDataType(string colname)
         {
