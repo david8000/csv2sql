@@ -5,6 +5,7 @@ using System.Drawing.Text;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 
@@ -50,15 +51,43 @@ namespace csv2sql
                 while (!reader.EndOfStream)
                 {
                     line = reader.ReadLine();
-                    string[] a = line.Split(delimiter);
 
-                    if (Form1.Instance.FormatDecimalValues)
+                    string[] a;
+                    if (Form1.Instance.CSVqualifier == "") //no csv qualifier
+                        a = line.Split(delimiter);
+                    else
+                        a= SplitCSVLine(line,Form1.Instance.CSVqualifier.ToCharArray()[0]); //use csv qualifier
+
+
+                    if (Form1.Instance.FormatDecimalValues) //option format dec values
                         a = formatDecVals(a);
 
                     csvLines.Add(a);
                 }
             }
         }
+
+       // Custom method to split a CSV line while handling the specified qualifier
+       //AI generated :)
+        private string[] SplitCSVLine(string line, char qualifier)
+        {
+            // Define a regular expression pattern to split the line
+            string pattern = $"{Regex.Escape(qualifier.ToString())}(.*?[^{Regex.Escape(qualifier.ToString())}])(?:{Regex.Escape(qualifier.ToString())}|$)|([^,]+)";
+
+            // Use regular expression to match and capture fields
+            MatchCollection matches = Regex.Matches(line, pattern);
+
+            // Extract captured values and remove empty entries
+            string[] fields = matches.Cast<Match>()
+                .Select(m => m.Value.Trim(qualifier).Replace(new string(qualifier, 2), qualifier.ToString())) // Remove qualifiers and handle escaped qualifiers
+                .ToArray();
+
+            return fields;
+        }
+
+
+
+
         private void readDataTypes()
         {
             columnDataTypes = new string[csvHeaders.Length];

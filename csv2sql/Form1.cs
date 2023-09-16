@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Runtime.CompilerServices;
 using System.Drawing;
 
@@ -59,6 +60,12 @@ namespace csv2sql
         public bool FormatDecimalValues
         {
             get { return checkBox1.Checked; }
+        }
+
+
+        public string CSVqualifier
+        {
+            get { return textBox4.Text.Trim(); }
         }
 
 
@@ -137,7 +144,7 @@ namespace csv2sql
 
 
 
-        // Define a method to save the data
+        //Save datatypes settings to file:
         private void SaveDataGridViewToCsv(string filePath)
         {
             using (var writer = new StreamWriter(filePath))
