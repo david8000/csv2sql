@@ -87,6 +87,35 @@ namespace csv2sql
         private string[] splitCSVLineQualifier(string line)
         {
             string[] rslt;
+            //replace delimiter within qualifier with a special delimiter
+            const string specDlm = "__?_?__"; //should not occur often in files..
+
+            //string D = @"\" + delimiter;
+            string D = delimiter;
+            string Q = Form1.Instance.CSVqualifier;
+            //string pattern = @Q + "[^" + Q + "].*" + (D) + "[^" + Q + "].*" + Q;
+            string pattern = @"("+@Q + "[^" + Q + "].*)(" + D + ")([^" + Q + "].*" + Q+")";
+
+            string line2 = Regex.Replace(line, pattern, "$1" +specDlm+"$3");
+            //SEEMS TO WORK TO HERE
+
+
+            string[] a = line2.Split(delimiter);
+            for (int i = 0; i < a.Length; i++)
+            {
+                a[i] = a[i].Replace(specDlm, "");
+                a[i] = a[i].Trim();
+            }
+
+            rslt = a;
+            return rslt;
+        }
+
+        /*
+         * Only works for qualifiers on all fields:
+        private string[] splitCSVLineQualifier(string line)
+        {
+            string[] rslt;
             string[] a = line.Split(Form1.Instance.CSVqualifier);
             List<string> L = new List<string>();
             for (int i = 0; i < a.Length; i++)
@@ -99,7 +128,7 @@ namespace csv2sql
             return rslt;
         }
 
-
+        */
 
 
         private void readDataTypes()
