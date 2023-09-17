@@ -56,17 +56,41 @@ namespace csv2sql
                     if (Form1.Instance.CSVqualifier == "") //no csv qualifier
                         a = line.Split(delimiter);
                     else
-                        a= SplitCSVLine(line,Form1.Instance.CSVqualifier.ToCharArray()[0]); //use csv qualifier
+                        a = splitCSVLineQualifier(line); //use csv qualifier
 
 
                     if (Form1.Instance.FormatDecimalValues) //option format dec values
-                        a = formatDecVals(a);
+                    {
+                        //debug
+                        if (a[7].Contains(","))
+                        {
+                            int kalle = 1;
+                        }
 
+                        a = formatDecVals(a);
+                    }
                     csvLines.Add(a);
                 }
             }
         }
 
+
+        private string[] splitCSVLineQualifier(string line)
+        {
+            string[] rslt;
+            string[] a = line.Split(Form1.Instance.CSVqualifier);
+            List<string> L = new List<string>();
+            for (int i = 0; i < a.Length; i++)
+            {
+                string s = a[i].Trim();
+                if (s != "" && s != delimiter)
+                    L.Add(s);
+            }
+            rslt = L.ToArray();
+            return rslt;
+        }
+
+        /*
        // Custom method to split a CSV line while handling the specified qualifier
        //AI generated :)
         private string[] SplitCSVLine(string line, char qualifier)
@@ -84,7 +108,7 @@ namespace csv2sql
 
             return fields;
         }
-
+        */
 
 
 
@@ -215,6 +239,26 @@ namespace csv2sql
         /// </summary>
         private string getDataType(string colname)
         {
+            const int colIndex = 0;
+            const int typeIndex = 1;
+            string rslt = Form1.Instance.DefaultDataType;
+
+            for (int i = 0; i < Form1.Instance.GridView.Rows.Count - 1; i++) //always empty row at end
+            {
+                //string col = row.ToString().Split(",")[0];
+                string col = "";
+                col = Form1.Instance.GridView.Rows[i].Cells[colIndex].Value.ToString();
+
+                if (col.Trim() == colname.Trim())
+                    rslt = Form1.Instance.GridView.Rows[i].Cells[typeIndex].Value.ToString();
+
+            }
+            return rslt;
+        }
+
+        /*
+        private string getDataType(string colname)
+        {
             string rslt = Form1.Instance.DefaultDataType;
             foreach (DataGridViewRow row in Form1.Instance.GridView.Rows)
             {
@@ -232,6 +276,15 @@ namespace csv2sql
             }
             return rslt;
         }
+        */
+
+
+
+        /*
+         * 
+         * */
+
+
 
 
     }
