@@ -44,7 +44,17 @@ namespace csv2sql
                 while (line.Trim() == "")
                 { line = reader.ReadLine(); }
 
-                csvHeaders = line.Split(delimiter);
+                switch (Form1.Instance.CSVqualifier)
+                {
+                    case "":
+                        csvHeaders = line.Split(delimiter);
+                        break;
+                    default:
+                        csvHeaders = splitCSVLineQualifier(line);
+                        break;
+                }
+
+
                 readDataTypes(); //pupulate this class var when headers read
 
 
@@ -52,24 +62,28 @@ namespace csv2sql
                 {
                     line = reader.ReadLine();
 
-                    string[] a;
-                    if (Form1.Instance.CSVqualifier == "") //no csv qualifier
-                        a = line.Split(delimiter);
-                    else
-                        a = splitCSVLineQualifier(line); //use csv qualifier
-
-
-                    if (Form1.Instance.FormatDecimalValues) //option format dec values
+                    if (line.Trim() != "") //skip empty
                     {
-                        //debug
-                        if (a[7].Contains(","))
-                        {
-                            int kalle = 1;
-                        }
 
-                        a = formatDecVals(a);
+                        string[] a;
+                        if (Form1.Instance.CSVqualifier == "") //no csv qualifier
+                            a = line.Split(delimiter);
+                        else
+                            a = splitCSVLineQualifier(line); //use csv qualifier
+
+
+                        if (Form1.Instance.FormatDecimalValues) //option format dec values
+                        {
+                            //debug
+                            //if (a[7].Contains(","))
+                            //{
+                            //    int kalle = 1;
+                            //}
+
+                            a = formatDecVals(a);
+                        }
+                        csvLines.Add(a);
                     }
-                    csvLines.Add(a);
                 }
             }
         }
