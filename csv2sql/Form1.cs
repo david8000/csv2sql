@@ -1,15 +1,6 @@
-using System.ComponentModel;
-using System.Data;
-using System.Windows.Forms;
 
-using System;
+using System.Data;
 using System.Diagnostics;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Runtime.CompilerServices;
-using System.Drawing;
 
 namespace csv2sql
 {
@@ -19,12 +10,9 @@ namespace csv2sql
     public partial class Form1 : Form
     {
 
-        public static Form1 Instance;
+        public static Form1 Instance; //in order to access Form1 from other classes
 
         private const int dataGridColW = 250;
-
-        //private SaveFileDialog saveFileDialog1;
-        //private OpenFileDialog openFileDialog1;
 
 
         public string Workfolder
@@ -49,7 +37,6 @@ namespace csv2sql
 
         public string AppSettinsPath
         {
-
             get
             {
                 return Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)
@@ -136,9 +123,7 @@ namespace csv2sql
 
                 foreach (DataGridViewColumn x in dataGridView1.Columns)
                     x.Width = dataGridColW; //set col width
-
             }
-
         }
 
 
@@ -198,11 +183,6 @@ namespace csv2sql
                         dataGridView1.Rows.Add(data);
                     }
                 }
-
-
-
-
-
             }
         }
 

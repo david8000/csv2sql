@@ -71,17 +71,9 @@ namespace csv2sql
                         else
                             a = splitCSVLineQualifier(line); //use csv qualifier
 
-
                         if (Form1.Instance.FormatDecimalValues) //option format dec values
-                        {
-                            //debug
-                            //if (a[7].Contains(","))
-                            //{
-                            //    int kalle = 1;
-                            //}
-
                             a = formatDecVals(a);
-                        }
+
                         csvLines.Add(a);
                     }
                 }
@@ -89,6 +81,9 @@ namespace csv2sql
         }
 
 
+        /// <summary>
+        /// Split a csv line when qualifier is used, ie "
+        /// </summary>
         private string[] splitCSVLineQualifier(string line)
         {
             string[] rslt;
@@ -104,25 +99,6 @@ namespace csv2sql
             return rslt;
         }
 
-        /*
-       // Custom method to split a CSV line while handling the specified qualifier
-       //AI generated :)
-        private string[] SplitCSVLine(string line, char qualifier)
-        {
-            // Define a regular expression pattern to split the line
-            string pattern = $"{Regex.Escape(qualifier.ToString())}(.*?[^{Regex.Escape(qualifier.ToString())}])(?:{Regex.Escape(qualifier.ToString())}|$)|([^,]+)";
-
-            // Use regular expression to match and capture fields
-            MatchCollection matches = Regex.Matches(line, pattern);
-
-            // Extract captured values and remove empty entries
-            string[] fields = matches.Cast<Match>()
-                .Select(m => m.Value.Trim(qualifier).Replace(new string(qualifier, 2), qualifier.ToString())) // Remove qualifiers and handle escaped qualifiers
-                .ToArray();
-
-            return fields;
-        }
-        */
 
 
 
@@ -140,8 +116,6 @@ namespace csv2sql
         {
             for (int i = 0; i < datarow.Length; i++)
             {
-                //string header = csvHeaders[i];
-                //string useType = getDataType(header);
                 string useType = columnDataTypes[i];
                 bool dec = isDecType(useType);
                 if (dec)
@@ -259,7 +233,6 @@ namespace csv2sql
 
             for (int i = 0; i < Form1.Instance.GridView.Rows.Count - 1; i++) //always empty row at end
             {
-                //string col = row.ToString().Split(",")[0];
                 string col = "";
                 col = Form1.Instance.GridView.Rows[i].Cells[colIndex].Value.ToString();
 
@@ -269,38 +242,6 @@ namespace csv2sql
             }
             return rslt;
         }
-
-        /*
-        private string getDataType(string colname)
-        {
-            string rslt = Form1.Instance.DefaultDataType;
-            foreach (DataGridViewRow row in Form1.Instance.GridView.Rows)
-            {
-                //string col = row.ToString().Split(",")[0];
-                string col = "";
-                try
-                {
-                    col = row.Cells[0].Value.ToString();
-                }
-                catch { }
-                if (col.Trim() == colname.Trim())
-                {
-                    rslt = row.Cells[1].Value.ToString();  //the datatype
-                }
-            }
-            return rslt;
-        }
-        */
-
-
-
-        /*
-         * 
-         * */
-
-
-
-
     }
 
 
