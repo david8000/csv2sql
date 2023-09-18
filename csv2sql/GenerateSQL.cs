@@ -64,7 +64,6 @@ namespace csv2sql
 
                     if (line.Trim() != "") //skip empty
                     {
-
                         string[] a;
                         if (Form1.Instance.CSVqualifier == "") //no csv qualifier
                             a = line.Split(delimiter);
@@ -88,22 +87,22 @@ namespace csv2sql
         {
             string[] rslt;
             //replace delimiter within qualifier with a special delimiter
-            const string specDlm = "__?_?__"; //should not occur often in files..
+            const string specDlm = "__?_?__"; //should not occur too often in files..
 
-            //string D = @"\" + delimiter;
-            string D = delimiter;
-            string Q = Form1.Instance.CSVqualifier;
-            //string pattern = @Q + "[^" + Q + "].*" + (D) + "[^" + Q + "].*" + Q;
-            string pattern = @"("+@Q + "[^" + Q + "].*)(" + D + ")([^" + Q + "].*" + Q+")";
+            bool escapeD = useRegexEscape(delimiter.ToCharArray()[0]);
+            bool escapeQ = useRegexEscape(Form1.Instance.CSVqualifier.ToCharArray()[0]);
+            string D = escapeD ? @"\" : "" + delimiter;
+            string Q = escapeQ ? @"\" : "" + Form1.Instance.CSVqualifier;
 
-            string line2 = Regex.Replace(line, pattern, "$1" +specDlm+"$3");
-            //SEEMS TO WORK TO HERE
+            string pattern = @"(" + @Q + "[^" + Q + "].*)(" + D + ")([^" + Q + "].*" + Q + ")";
 
+            string line2 = Regex.Replace(line, pattern, "$1" + specDlm + "$3");
 
             string[] a = line2.Split(delimiter);
             for (int i = 0; i < a.Length; i++)
             {
-                a[i] = a[i].Replace(specDlm, "");
+                a[i] = a[i].Replace(specDlm, ";");
+                a[i] = a[i].Replace(Form1.Instance.CSVqualifier, "");
                 a[i] = a[i].Trim();
             }
 
@@ -111,24 +110,16 @@ namespace csv2sql
             return rslt;
         }
 
-        /*
-         * Only works for qualifiers on all fields:
-        private string[] splitCSVLineQualifier(string line)
+        private bool useRegexEscape(char c)
         {
-            string[] rslt;
-            string[] a = line.Split(Form1.Instance.CSVqualifier);
-            List<string> L = new List<string>();
-            for (int i = 0; i < a.Length; i++)
-            {
-                string s = a[i].Trim();
-                if (s != "" && s != delimiter)
-                    L.Add(s);
-            }
-            rslt = L.ToArray();
-            return rslt;
+            List<char> chars = new List<char> { '.', '*', '+', '?', '|', '(', ')', '[', ']', '{', '}', '\\', '$', '^', '-' };
+            bool result = false;
+            if (chars.Contains(c))
+                result = true;
+            return result;
+
         }
 
-        */
 
 
         private void readDataTypes()

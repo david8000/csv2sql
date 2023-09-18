@@ -7,4 +7,4 @@ TransactionDate,datetime2
 TransactionType,nvarchar(20)
 Quantity,int
 ActualCost,money
-ModifiedDate,datetime2
+ModifiedDate,date
