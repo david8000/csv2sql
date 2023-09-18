@@ -183,15 +183,16 @@ namespace csv2sql
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(44, 140);
+            this.label5.Location = new System.Drawing.Point(398, 143);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(78, 21);
             this.label5.TabIndex = 12;
             this.label5.Text = "Batch size";
+            this.label5.Click += new System.EventHandler(this.label5_Click_1);
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(48, 164);
+            this.numericUpDown1.Location = new System.Drawing.Point(402, 167);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -205,6 +206,7 @@ namespace csv2sql
             0,
             0,
             0});
+            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
             // button5
             // 
@@ -234,7 +236,7 @@ namespace csv2sql
             this.checkBox1.Checked = true;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.checkBox1.Location = new System.Drawing.Point(198, 140);
+            this.checkBox1.Location = new System.Drawing.Point(169, 142);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(185, 25);
             this.checkBox1.TabIndex = 17;
@@ -245,7 +247,7 @@ namespace csv2sql
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(433, 141);
+            this.label6.Location = new System.Drawing.Point(48, 142);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(100, 21);
             this.label6.TabIndex = 18;
@@ -253,7 +255,7 @@ namespace csv2sql
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(433, 163);
+            this.textBox4.Location = new System.Drawing.Point(48, 164);
             this.textBox4.MaxLength = 1;
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(36, 23);

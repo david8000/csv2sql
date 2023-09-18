@@ -289,5 +289,15 @@ namespace csv2sql
         {
 
         }
+
+        private void label5_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

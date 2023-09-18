@@ -117,7 +117,6 @@ namespace csv2sql
             if (chars.Contains(c))
                 result = true;
             return result;
-
         }
 
 
