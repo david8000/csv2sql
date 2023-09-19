@@ -49,8 +49,20 @@ namespace csv2sql
             get { return checkBox1.Checked; }
         }
 
+        public string Delimiter
+        {
+            get
+            {
+                char tab = '\t';
+                if (textBox5.Text.Trim() == @"\t")
+                    return tab.ToString();
+                else
+                    return textBox5.Text.Trim();
+            }
+        }
 
-        public string CSVqualifier
+
+        public string Qualifier
         {
             get { return textBox4.Text.Trim(); }
         }
@@ -82,12 +94,15 @@ namespace csv2sql
             foreach (DataGridViewColumn x in dataGridView1.Columns)
                 x.Width = dataGridColW; //set col width
 
+            //Tooltip on label "delimiter"
+            new ToolTip().SetToolTip(label7, @"Use \t for tab");
+
+            //Tooltip on label "qualifier"
+            new ToolTip().SetToolTip(label6, "The string qualifier of the input csv.\r\nNormally \" or blank");
 
             //Tooltip on checkbox "format decimal values":
             new ToolTip().SetToolTip(checkBox1, "Will replace \",\" with \".\" and remove spaces.\r\nApplies to datatypes where decimals are used.");
 
-            //Tooltip on textbox "csv qualifier"
-            new ToolTip().SetToolTip(label6, "The string qualifier of the input csv.\r\nNormally \" or blank");
 
 
 

@@ -57,6 +57,8 @@ namespace csv2sql
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBox5 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
@@ -65,7 +67,7 @@ namespace csv2sql
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(48, 20);
+            this.label1.Location = new System.Drawing.Point(55, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(92, 21);
             this.label1.TabIndex = 0;
@@ -73,9 +75,10 @@ namespace csv2sql
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(48, 44);
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBox1.Location = new System.Drawing.Point(55, 47);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(581, 23);
+            this.textBox1.Size = new System.Drawing.Size(663, 22);
             this.textBox1.TabIndex = 1;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -83,7 +86,7 @@ namespace csv2sql
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(48, 213);
+            this.label2.Location = new System.Drawing.Point(55, 227);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(124, 21);
             this.label2.TabIndex = 2;
@@ -91,27 +94,28 @@ namespace csv2sql
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(48, 237);
+            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBox2.Location = new System.Drawing.Point(55, 253);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(581, 23);
+            this.textBox2.Size = new System.Drawing.Size(663, 22);
             this.textBox2.TabIndex = 3;
             this.textBox2.Text = "nvarchar(100)";
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(48, 312);
+            this.dataGridView1.Location = new System.Drawing.Point(55, 333);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 70;
             this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(581, 392);
+            this.dataGridView1.Size = new System.Drawing.Size(664, 418);
             this.dataGridView1.TabIndex = 4;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(48, 283);
+            this.label3.Location = new System.Drawing.Point(55, 302);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(153, 21);
             this.label3.TabIndex = 5;
@@ -120,9 +124,9 @@ namespace csv2sql
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button1.Location = new System.Drawing.Point(638, 416);
+            this.button1.Location = new System.Drawing.Point(729, 444);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 29);
+            this.button1.Size = new System.Drawing.Size(86, 31);
             this.button1.TabIndex = 6;
             this.button1.Text = "Save";
             this.button1.UseVisualStyleBackColor = true;
@@ -131,9 +135,9 @@ namespace csv2sql
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button2.Location = new System.Drawing.Point(638, 381);
+            this.button2.Location = new System.Drawing.Point(729, 406);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 29);
+            this.button2.Size = new System.Drawing.Size(86, 31);
             this.button2.TabIndex = 7;
             this.button2.Text = "Load";
             this.button2.UseVisualStyleBackColor = true;
@@ -142,9 +146,9 @@ namespace csv2sql
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button3.Location = new System.Drawing.Point(145, 727);
+            this.button3.Location = new System.Drawing.Point(166, 775);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(380, 35);
+            this.button3.Size = new System.Drawing.Size(434, 37);
             this.button3.TabIndex = 8;
             this.button3.Text = "Start";
             this.button3.UseVisualStyleBackColor = true;
@@ -152,9 +156,10 @@ namespace csv2sql
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(48, 104);
+            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBox3.Location = new System.Drawing.Point(55, 111);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(581, 23);
+            this.textBox3.Size = new System.Drawing.Size(663, 22);
             this.textBox3.TabIndex = 10;
             this.textBox3.Text = "c:\\example.csv";
             // 
@@ -162,7 +167,7 @@ namespace csv2sql
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(48, 80);
+            this.label4.Location = new System.Drawing.Point(55, 85);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(64, 21);
             this.label4.TabIndex = 9;
@@ -171,9 +176,9 @@ namespace csv2sql
             // button4
             // 
             this.button4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button4.Location = new System.Drawing.Point(638, 100);
+            this.button4.Location = new System.Drawing.Point(729, 107);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 29);
+            this.button4.Size = new System.Drawing.Size(86, 31);
             this.button4.TabIndex = 11;
             this.button4.Text = "Choose";
             this.button4.UseVisualStyleBackColor = true;
@@ -183,7 +188,7 @@ namespace csv2sql
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(398, 143);
+            this.label5.Location = new System.Drawing.Point(577, 150);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(78, 21);
             this.label5.TabIndex = 12;
@@ -192,14 +197,15 @@ namespace csv2sql
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(402, 167);
+            this.numericUpDown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.numericUpDown1.Location = new System.Drawing.Point(582, 176);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
             this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 23);
+            this.numericUpDown1.Size = new System.Drawing.Size(137, 22);
             this.numericUpDown1.TabIndex = 13;
             this.numericUpDown1.Value = new decimal(new int[] {
             100,
@@ -211,9 +217,9 @@ namespace csv2sql
             // button5
             // 
             this.button5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button5.Location = new System.Drawing.Point(638, 38);
+            this.button5.Location = new System.Drawing.Point(729, 41);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 29);
+            this.button5.Size = new System.Drawing.Size(86, 31);
             this.button5.TabIndex = 14;
             this.button5.Text = "Choose";
             this.button5.UseVisualStyleBackColor = true;
@@ -222,9 +228,9 @@ namespace csv2sql
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(286, 768);
+            this.linkLabel1.Location = new System.Drawing.Point(327, 819);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(97, 15);
+            this.linkLabel1.Size = new System.Drawing.Size(106, 16);
             this.linkLabel1.TabIndex = 15;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "open work folder";
@@ -236,7 +242,7 @@ namespace csv2sql
             this.checkBox1.Checked = true;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.checkBox1.Location = new System.Drawing.Point(169, 142);
+            this.checkBox1.Location = new System.Drawing.Point(363, 149);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(185, 25);
             this.checkBox1.TabIndex = 17;
@@ -247,26 +253,51 @@ namespace csv2sql
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(48, 142);
+            this.label6.Location = new System.Drawing.Point(214, 153);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(100, 21);
+            this.label6.Size = new System.Drawing.Size(70, 21);
             this.label6.TabIndex = 18;
-            this.label6.Text = "CSV qualifier";
+            this.label6.Text = "Qualifier";
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(48, 164);
+            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBox4.Location = new System.Drawing.Point(226, 177);
             this.textBox4.MaxLength = 1;
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(36, 23);
+            this.textBox4.Size = new System.Drawing.Size(41, 22);
             this.textBox4.TabIndex = 19;
+            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label7.Location = new System.Drawing.Point(55, 153);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(74, 21);
+            this.label7.TabIndex = 20;
+            this.label7.Text = "Delimiter";
+            // 
+            // textBox5
+            // 
+            this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBox5.Location = new System.Drawing.Point(66, 177);
+            this.textBox5.MaxLength = 2;
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(41, 22);
+            this.textBox5.TabIndex = 21;
+            this.textBox5.Text = ";";
+            this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(732, 806);
+            this.ClientSize = new System.Drawing.Size(837, 860);
             this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.linkLabel1);
@@ -285,6 +316,7 @@ namespace csv2sql
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -315,6 +347,8 @@ namespace csv2sql
         private CheckBox checkBox1;
         private Label label6;
         private TextBox textBox4;
+        private Label label7;
+        private TextBox textBox5;
     }
 
 

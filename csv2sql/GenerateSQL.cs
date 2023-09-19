@@ -16,7 +16,7 @@ namespace csv2sql
     {
 
         public const string outputFileName = "_output_.sql";
-        public const string delimiter = ";";
+        //public const string delimiter = ";";
         public const string defaultTableName = "_MYNEWTABLE_";
 
         private string[] csvHeaders;
@@ -44,10 +44,10 @@ namespace csv2sql
                 while (line.Trim() == "")
                 { line = reader.ReadLine(); }
 
-                switch (Form1.Instance.CSVqualifier)
+                switch (Form1.Instance.Qualifier)
                 {
                     case "":
-                        csvHeaders = line.Split(delimiter);
+                        csvHeaders = line.Split(Form1.Instance.Delimiter);
                         break;
                     default:
                         csvHeaders = splitCSVLineQualifier(line);
@@ -65,8 +65,8 @@ namespace csv2sql
                     if (line.Trim() != "") //skip empty
                     {
                         string[] a;
-                        if (Form1.Instance.CSVqualifier == "") //no csv qualifier
-                            a = line.Split(delimiter);
+                        if (Form1.Instance.Qualifier == "") //no csv qualifier
+                            a = line.Split(Form1.Instance.Delimiter);
                         else
                             a = splitCSVLineQualifier(line); //use csv qualifier
 
@@ -89,20 +89,20 @@ namespace csv2sql
             //replace delimiter within qualifier with a special delimiter
             const string specDlm = "__?_?__"; //should not occur too often in files..
 
-            bool escapeD = useRegexEscape(delimiter.ToCharArray()[0]);
-            bool escapeQ = useRegexEscape(Form1.Instance.CSVqualifier.ToCharArray()[0]);
-            string D = escapeD ? @"\" : "" + delimiter;
-            string Q = escapeQ ? @"\" : "" + Form1.Instance.CSVqualifier;
+            bool escapeD = useRegexEscape(Form1.Instance.Delimiter.ToCharArray()[0]);
+            bool escapeQ = useRegexEscape(Form1.Instance.Qualifier.ToCharArray()[0]);
+            string D = escapeD ? @"\" : "" + Form1.Instance.Delimiter;
+            string Q = escapeQ ? @"\" : "" + Form1.Instance.Qualifier;
 
             string pattern = @"(" + @Q + "[^" + Q + "].*)(" + D + ")([^" + Q + "].*" + Q + ")";
 
             string line2 = Regex.Replace(line, pattern, "$1" + specDlm + "$3");
 
-            string[] a = line2.Split(delimiter);
+            string[] a = line2.Split(Form1.Instance.Delimiter);
             for (int i = 0; i < a.Length; i++)
             {
                 a[i] = a[i].Replace(specDlm, ";");
-                a[i] = a[i].Replace(Form1.Instance.CSVqualifier, "");
+                a[i] = a[i].Replace(Form1.Instance.Qualifier, "");
                 a[i] = a[i].Trim();
             }
 
