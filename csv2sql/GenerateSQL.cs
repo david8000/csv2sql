@@ -73,6 +73,9 @@ namespace csv2sql
                         if (Form1.Instance.FormatDecimalValues) //option format dec values
                             a = formatDecVals(a);
 
+                        if (Form1.Instance.NullifyEmptyNonCharVals) //option nullify..
+                            a = nullifyEmptyNonCharVals(a);
+
                         csvLines.Add(a);
                     }
                 }
@@ -147,11 +150,41 @@ namespace csv2sql
             return datarow;
         }
 
+        private string[] nullifyEmptyNonCharVals(string[] datarow)
+        {
+            string[] rslt = datarow;
+            for (int i = 0; i < rslt.Length; i++)
+            {
+                string type = columnDataTypes[i];
+                if (rslt[i].Trim() == "")
+                {
+                    if (!isCharDataType(type))
+                        rslt[i] = "null";
+
+                }
+            }
+            return rslt;
+        }
+
+        private bool isCharDataType(string typeName)
+        {
+            bool rslt = false;
+            if (typeName.Contains("char", StringComparison.InvariantCultureIgnoreCase))
+                rslt = true;
+            else if (typeName.Contains("text", StringComparison.InvariantCultureIgnoreCase))
+                rslt = true;
+            else if (typeName.Contains("binary", StringComparison.InvariantCultureIgnoreCase))
+                rslt = true;
+
+            return rslt;
+        }
+
+
         private bool isDecType(string typeName)
         {
             bool rslt = false;
             string[] types = { "float", "real", "decimal", "money", "numeric", "dec", "fixed", "double" };
-            //note: "dec", "fixed", "double" are MySQL types. The rest is SQL Server.
+            //note: "dec", "fixed" and "double" are MySQL types. The rest is SQL Server.
 
             foreach (string type in types)
                 if (typeName.Contains(type, StringComparison.InvariantCultureIgnoreCase))
@@ -200,7 +233,7 @@ namespace csv2sql
 
 
                 int rowno = 0;
-                int b = 0; //batch size
+                int b = 0; //batch size counter
                 foreach (string[] s in csvLines)
                 {
 
@@ -214,8 +247,14 @@ namespace csv2sql
                     writer.Write(" (");
                     for (int i = 0; i < s.Length; i++)
                     {
-                        writer.Write("'" + s[i] + "' ");
-                        if (i < s.Length - 1) { writer.Write(", "); }
+                        //no quotes for value "null":
+                        if (!isCharDataType(columnDataTypes[i]) && s[i] == "null")
+                            writer.Write(s[i]); 
+                        else
+                            writer.Write("'" + s[i] + "' ");
+
+                        if (i < s.Length - 1) 
+                            writer.Write(", "); 
                     }
 
                     writer.Write(")");

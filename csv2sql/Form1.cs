@@ -49,6 +49,12 @@ namespace csv2sql
             get { return checkBox1.Checked; }
         }
 
+        public bool NullifyEmptyNonCharVals
+        {
+            get { return checkBox2.Checked; }
+        }
+
+
         public string Delimiter
         {
             get
@@ -100,8 +106,8 @@ namespace csv2sql
             //Tooltip on label "qualifier"
             new ToolTip().SetToolTip(label6, "The string qualifier of the input csv.\r\nNormally \" or blank");
 
-            //Tooltip on checkbox "format decimal values":
-            new ToolTip().SetToolTip(checkBox1, "Will replace \",\" with \".\" and remove spaces.\r\nApplies to datatypes where decimals are used.");
+            //Tooltip on label "format decimal values":
+            new ToolTip().SetToolTip(label8, "Will replace \",\" with \".\" and remove spaces.\r\nApplies to datatypes where decimals are used.");
 
 
 
